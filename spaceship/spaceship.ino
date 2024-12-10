@@ -13,26 +13,46 @@ void setup() {
   pinMode(red2, OUTPUT);
 }
 
+void setOffState()
+{
+  digitalWrite(green, HIGH);
+  digitalWrite(red1, LOW);
+  digitalWrite(red2, LOW);
+}
+
+void setPersistentOnState()
+{
+  digitalWrite(green, LOW);
+}
+
+void setOnState1()
+{
+  digitalWrite(red1, LOW);
+  digitalWrite(red2, LOW);
+}
+
+void setOnState2()
+{
+  digitalWrite(red1, HIGH);
+  digitalWrite(red2, HIGH);
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
   switchState = digitalRead(switchParallelPin);
 
   if (switchState == LOW)
   {
-    digitalWrite(green, HIGH);
-    digitalWrite(red1, LOW);
-    digitalWrite(red2, LOW);
+    setOffState();
   }
   else
   {
-    digitalWrite(green, LOW);
+    setPersistentOnState();
 
-    digitalWrite(red1, LOW);
-    digitalWrite(red2, LOW);
+    setOnState1();
     delay(delayVal);
 
-    digitalWrite(red1, HIGH);
-    digitalWrite(red2, HIGH);
+    setOnState2();
     delay(delayVal);
   }
 }
