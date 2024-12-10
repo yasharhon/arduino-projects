@@ -1,33 +1,38 @@
 int switchState = 0;
+int switchParallelPin = 2;
+int red1 = 4;
+int red2 = 5;
+int green = 3;
+int delayVal = 250;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(2, INPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
+  pinMode(switchParallelPin, INPUT);
+  pinMode(green, OUTPUT);
+  pinMode(red1, OUTPUT);
+  pinMode(red2, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  switchState = digitalRead(2);
+  switchState = digitalRead(switchParallelPin);
 
   if (switchState == LOW)
   {
-    digitalWrite(3, HIGH);
-    digitalWrite(4, LOW);
-    digitalWrite(5, LOW);
+    digitalWrite(green, HIGH);
+    digitalWrite(red1, LOW);
+    digitalWrite(red2, LOW);
   }
   else
   {
-    digitalWrite(3, LOW);
+    digitalWrite(green, LOW);
 
-    digitalWrite(4, LOW);
-    digitalWrite(5, LOW);
-    delay(250);
+    digitalWrite(red1, LOW);
+    digitalWrite(red2, LOW);
+    delay(delayVal);
 
-    digitalWrite(4, HIGH);
-    digitalWrite(5, HIGH);
-    delay(250);
+    digitalWrite(red1, HIGH);
+    digitalWrite(red2, HIGH);
+    delay(delayVal);
   }
 }
