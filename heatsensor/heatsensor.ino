@@ -44,15 +44,15 @@ void loop()
 
   int maxLightedPortNo = 2;
 
-  if (temp > ambientTemp + 2 * 3)
+  if (tempVal > ambientTemp + 2 * 3)
   {
     maxLightedPortNo = 4;
   }
-  else if (temp > ambientTemp + 2 * 3)
+  else if (tempVal > ambientTemp + 2 * 3)
   {
     maxLightedPortNo = 3;
   }
-  else if (temp > ambientTemp + 2 * 3)
+  else if (tempVal > ambientTemp + 2 * 3)
   {
     maxLightedPortNo = 2;
   }
