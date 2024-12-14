@@ -4,15 +4,17 @@ const float maxAnalogReadValue = 1024.0;
 const float maxVoltage = 5.0;
 const float voltageAtZeroCelsius = 0.5;
 const float celsiusChangePerVoltChange = 100.0;
+const float degreesPerPort = 2.0;
 const int finalDelay = 100;
 
 int treatedPorts[] = {2, 3, 4};
+int noOfTreatedPorts = 3;
 
 void setup ()
 {
   Serial.begin(9600);
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < noOfTreatedPorts; i++)
   {
     pinMode(treatedPorts[i], OUTPUT);
     digitalWrite(treatedPorts[i], LOW);
@@ -54,23 +56,13 @@ void loop()
 
   printLineBreak();
 
+  float tempAboveAmbient = tempVal - ambientTemp;
+
   int portsToLight = 0;
 
-  if (tempVal > ambientTemp + 2 * 3)
+  if (tempAboveAmbient > 0)
   {
-    portsToLight = 3;
-  }
-  else if (tempVal > ambientTemp + 2 * 2)
-  {
-    portsToLight = 2;
-  }
-  else if (tempVal > ambientTemp + 2 * 1)
-  {
-    portsToLight = 1;
-  }
-  else
-  {
-    portsToLight = 0;
+    portsToLight = (int)(tempAboveAmbient / degreesPerPort);
   }
 
   for (int i = 0; i < portsToLight; i++)
