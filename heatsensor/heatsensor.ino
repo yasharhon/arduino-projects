@@ -54,28 +54,33 @@ void loop()
 
   printLineBreak();
 
-  int maxLightedPortNo = 2;
+  int portsToLight = 0;
 
   if (tempVal > ambientTemp + 2 * 3)
   {
-    maxLightedPortNo = 4;
+    portsToLight = 3;
   }
   else if (tempVal > ambientTemp + 2 * 2)
   {
-    maxLightedPortNo = 3;
+    portsToLight = 2;
   }
   else if (tempVal > ambientTemp + 2 * 1)
   {
-    maxLightedPortNo = 2;
+    portsToLight = 1;
   }
   else
   {
-    maxLightedPortNo = 1;
+    portsToLight = 0;
   }
 
-  for (int portNo = 2; portNo <= maxLightedPortNo; portNo++)
+  for (int i = 0; i < portsToLight; i++)
   {
-    digitalWrite(portNo, HIGH);
+    digitalWrite(treatedPorts[i], HIGH);
+  }
+
+  for (int j = portsToLight; j < 3; j++)
+  {
+    digitalWrite(treatedPorts[j], LOW);
   }
 
   delay(finalDelay);
