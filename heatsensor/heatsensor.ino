@@ -2,6 +2,8 @@ const int sensorPin = A0;
 const float ambientTemp = 20.0;
 const float maxAnalogReadValue = 1024.0;
 const float maxVoltage = 5.0;
+const float voltageAtZeroCelsius = 0.5;
+const float celsiusChangePerVoltChange = 100.0;
 
 void setup ()
 {
@@ -19,6 +21,11 @@ float analogToVoltage(float analogVal)
   return (analogVal / maxAnalogReadValue) * maxVoltage;
 }
 
+float voltageToCelsiusTemp(float voltage)
+{
+  return (voltage - voltageAtZeroCelsius) * celsiusChangePerVoltChange;
+}
+
 void loop()
 {
   int sensorVal = analogRead(sensorPin);
@@ -26,6 +33,11 @@ void loop()
   Serial.print("Sensor value: ");
   Serial.print(sensorVal);
 
+  float voltageVal = analogToVoltage(sensorVal);
   Serial.print(". Voltage: ");
-  Serial.print(analogToVoltage(sensorVal));
+  Serial.print(voltageVal);
+
+  float tempVal = voltageToCelsiusTemp(voltageVal);
+  Serial.print(". Temperature (C): ");
+  Serial.print(tempVal);
 }
