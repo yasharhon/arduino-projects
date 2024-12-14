@@ -6,14 +6,16 @@ const float voltageAtZeroCelsius = 0.5;
 const float celsiusChangePerVoltChange = 100.0;
 const int finalDelay = 100;
 
+int treatedPorts[] = {2, 3, 4};
+
 void setup ()
 {
   Serial.begin(9600);
 
-  for (int portNo = 2; portNo <= 4; portNo++)
+  for (int i = 0; i < 3; i++)
   {
-    pinMode(portNo, OUTPUT);
-    digitalWrite(portNo, LOW);
+    pinMode(treatedPorts[i], OUTPUT);
+    digitalWrite(treatedPorts[i], LOW);
   }
 }
 
