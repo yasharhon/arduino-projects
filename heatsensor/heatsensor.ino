@@ -40,7 +40,7 @@ void loop()
 
   float tempVal = voltageToCelsiusTemp(voltageVal);
   Serial.print(". Temperature (C): ");
-  Serial.print(tempVal);
+  Serial.println(tempVal);
 
   int maxLightedPortNo = 2;
 
