@@ -40,4 +40,28 @@ void loop()
   float tempVal = voltageToCelsiusTemp(voltageVal);
   Serial.print(". Temperature (C): ");
   Serial.print(tempVal);
+
+  int maxLightedPortNo = 2;
+
+  if (temp > ambientTemp + 2 * 3)
+  {
+    maxLightedPortNo = 4;
+  }
+  else if (temp > ambientTemp + 2 * 3)
+  {
+    maxLightedPortNo = 3;
+  }
+  else if (temp > ambientTemp + 2 * 3)
+  {
+    maxLightedPortNo = 2;
+  }
+  else
+  {
+    maxLightedPortNo = 1;
+  }
+
+  for (int portNo = 2; portNo <= maxLightedPortNo; portNo++)
+  {
+    digitalWrite(portNo, HIGH);
+  }
 }
