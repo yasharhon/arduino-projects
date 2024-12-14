@@ -27,20 +27,30 @@ float voltageToCelsiusTemp(float voltage)
   return (voltage - voltageAtZeroCelsius) * celsiusChangePerVoltChange;
 }
 
+void printMessageAndValue(char* message, float value)
+{
+  Serial.print(message);
+  Serial.print(value);
+}
+
+void printLineBreak()
+{
+  Serial.println();
+}
+
 void loop()
 {
   int sensorVal = analogRead(sensorPin);
 
-  Serial.print("Sensor value: ");
-  Serial.print(sensorVal);
+  printMessageAndValue("Sensor value: ", sensorVal);
 
   float voltageVal = analogToVoltage(sensorVal);
-  Serial.print(". Voltage: ");
-  Serial.print(voltageVal);
+  printMessageAndValue(". Voltage: ", voltageVal);
 
   float tempVal = voltageToCelsiusTemp(voltageVal);
-  Serial.print(". Temperature (C): ");
-  Serial.println(tempVal);
+  printMessageAndValue(". Temperature (C): ", tempVal);
+
+  printLineBreak();
 
   int maxLightedPortNo = 2;
 
