@@ -4,6 +4,7 @@ const float maxAnalogReadValue = 1024.0;
 const float maxVoltage = 5.0;
 const float voltageAtZeroCelsius = 0.5;
 const float celsiusChangePerVoltChange = 100.0;
+const int finalDelay = 100;
 
 void setup ()
 {
@@ -64,4 +65,6 @@ void loop()
   {
     digitalWrite(portNo, HIGH);
   }
+
+  delay(finalDelay);
 }
