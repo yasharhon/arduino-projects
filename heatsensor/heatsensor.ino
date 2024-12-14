@@ -10,7 +10,7 @@ void setup ()
 {
   Serial.begin(9600);
 
-  for (int portNo = 2; portNo < 4; portNo++)
+  for (int portNo = 2; portNo <= 4; portNo++)
   {
     pinMode(portNo, OUTPUT);
     digitalWrite(portNo, LOW);
@@ -48,11 +48,11 @@ void loop()
   {
     maxLightedPortNo = 4;
   }
-  else if (tempVal > ambientTemp + 2 * 3)
+  else if (tempVal > ambientTemp + 2 * 2)
   {
     maxLightedPortNo = 3;
   }
-  else if (tempVal > ambientTemp + 2 * 3)
+  else if (tempVal > ambientTemp + 2 * 1)
   {
     maxLightedPortNo = 2;
   }
